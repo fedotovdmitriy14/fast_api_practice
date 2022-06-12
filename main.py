@@ -1,6 +1,6 @@
 from typing import Union
 
-from fastapi import FastAPI, Query, Path
+from fastapi import FastAPI, Query, Path, Body
 
 from schemas import Item, Book
 
@@ -18,8 +18,8 @@ def read_item(item_id: int = Path(..., gt=0, le=5), q: Union[str, None] = None):
 
 
 @app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {"item_name": item.name, "item_id": item_id}
+def update_item(item_id: int, item: Item, quantity: int = Body(...)):
+    return {"item_name": item.name, "item_id": item_id, "quantity": quantity}
 
 
 @app.post("/book")
