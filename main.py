@@ -28,5 +28,5 @@ def post_new_book(book: Book):
 
 
 @app.get("/book")
-def get_book(q: str = Query(..., deprecated=True, min_length=3, description="Search book")):
-    return q
+def get_book(q_string: str = Query(..., deprecated=True, min_length=3, description="Search book")):
+    return q_string
